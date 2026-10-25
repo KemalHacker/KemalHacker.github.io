@@ -366,18 +366,18 @@ let favorites=new Set();
 try{favorites=new Set(JSON.parse(localStorage.getItem(favoriteKey)||"[]"))}catch(e){}
 let quickMode="all";
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function imageUrl(g){
-  const name = g.n.toLocaleLowerCase("tr");
+function imageUrl(g) {
+  const name = g.n.toLowerCase();
 
-  if(name.includes("mobile legends")){
-    return "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mobile%20Legends%20Logo.webp";
+  if (name.includes("asphalt legends unite")) {
+    return "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/61000/header.jpg";
   }
 
-  if(name.includes("fc 26") || name.includes("ea sports fc 26")){
-    return "https://cdn.akamai.steamstatic.com/steam/apps/3405690/2d96aa1b06e453cd62dae9029d412f19e61932c3/header.jpg";
+  if (name.includes("fc 26") || name.includes("ea sports fc 26")) {
+    return "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/header.jpg";
   }
 
-  return `https://cdn.akamai.steamstatic.com/steam/apps/${g.id}/header.jpg`;
+  return `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${g.id}/header.jpg`;
 }
 
 function card(g){
