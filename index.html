@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a12">
+<title>GAMING WORLD | Oyun Evreni</title>
+<style>
+:root{--bg:#080a12;--panel:#111827;--red:#ff304f;--blue:#31a8ff;--text:#f4f7ff;--muted:#aab4c8;--line:#29364c;--green:#46e6a4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 15% 10%,#19274b,transparent 45%),radial-gradient(ellipse at 85% 25%,#4a1024,transparent 40%),#080a12}
+body:after{content:"";position:fixed;inset:-50%;z-index:-1;pointer-events:none;opacity:.16;background:repeating-linear-gradient(115deg,transparent 0 90px,#1d83ff 91px 93px,transparent 95px 180px,#ff2447 181px 183px,transparent 185px 280px);animation:move 25s linear infinite}
+@keyframes move{to{transform:translate(100px,80px)}}
+a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+.wrap{width:min(1200px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#080a12ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-weight:1000;letter-spacing:1px;text-decoration:none;font-size:1.2rem}.logo b{color:var(--red)}.logo span{color:var(--blue)}
+nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}nav a{text-decoration:none;color:#cbd4e6;font-size:.9rem}
+.btn{border:1px solid #35435c;border-radius:10px;background:#151d2b;color:white;padding:10px 14px;font-weight:750;display:inline-block;text-decoration:none;transition:.2s}
+.btn:hover{border-color:var(--blue);transform:translateY(-1px)}
+.primary{background:linear-gradient(100deg,#e91e42,#b51c59);border-color:#ff526b}.blue{background:linear-gradient(100deg,#126fce,#1548a0);border-color:var(--blue)}
+.hero{padding:60px 0 30px;display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center}
+.eyebrow{color:#75c8ff;text-transform:uppercase;letter-spacing:3px;font-size:.78rem;font-weight:900}
+h1{font-size:clamp(2.7rem,6vw,5rem);line-height:.98;margin:15px 0;letter-spacing:-2px}
+h1 em{font-style:normal;color:var(--red)}h1 span{color:var(--blue)}
+.hero p{color:var(--muted);line-height:1.7;max-width:560px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero-art{height:300px;position:relative;border:1px solid #33435d;border-radius:20px;overflow:hidden;background:linear-gradient(#07101a50,#07101a70),url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85") center/cover;box-shadow:0 20px 60px #0008}
+.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 45%,#ff304f45),repeating-linear-gradient(125deg,transparent 0 55px,#31a8ff35 56px 58px,transparent 59px 115px)}
+.art-label{position:absolute;z-index:1;bottom:20px;left:20px;font-size:1.5rem;font-weight:900;text-shadow:0 2px 10px #000}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0 35px}
+.stat,.feature{background:#111827d9;border:1px solid var(--line);border-radius:13px;padding:16px}
+.stat b{display:block;font-size:1.4rem}.stat span{color:var(--muted);font-size:.85rem}
+section{padding:20px 0 35px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}
+h2{margin:0;font-size:clamp(1.5rem,3vw,2rem)}.section-head p{margin:6px 0 0;color:var(--muted)}
+.controls{display:grid;grid-template-columns:minmax(180px,1fr) 180px 170px 170px;gap:10px;margin:20px 0}
+.control{width:100%;padding:12px;background:#101625;color:white;border:1px solid #34415a;border-radius:10px;min-width:0}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{background:#101522;color:#cbd4e6;border:1px solid #35425a;border-radius:99px;padding:8px 13px}
+.pill.active{background:#1b3c66;border-color:var(--blue);color:white}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.game-card{background:linear-gradient(#151c2b,#0e1320);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0;transition:.2s}
+.game-card:hover{transform:translateY(-4px);border-color:#397fc3}
+.cover{height:155px;position:relative;background:linear-gradient(135deg,#14284a,#391426);overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;font-weight:900;background:linear-gradient(135deg,#132d52,#3d1226)}
+.tag{position:absolute;top:9px;left:9px;background:#080b12df;border:1px solid #ffffff44;border-radius:6px;padding:5px 7px;font-size:.7rem;font-weight:800}
+.heart{position:absolute;right:8px;top:8px;background:#080b12df;color:white;border:1px solid #ffffff55;border-radius:8px;width:34px;height:34px;font-size:1.1rem}
+.heart.saved{color:#ff4f70;border-color:#ff4f70}
+.card-body{padding:13px}.card-body h3{margin:0 0 8px;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;gap:5px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin:13px 0}
+.price{font-weight:850}.price.free{color:var(--green)}
+.card-actions{display:flex;gap:7px}.card-actions .btn{flex:1;text-align:center;padding:8px 5px;font-size:.8rem}
+.empty{grid-column:1/-1;text-align:center;padding:30px;border:1px dashed #3b4961;border-radius:12px;color:var(--muted)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feature h3{margin:9px 0}.feature p{margin:0;color:var(--muted);line-height:1.6;font-size:.9rem}
+.notice{margin-top:18px;border:1px solid #5b4524;background:#211b12;color:#f6d9a1;padding:14px;border-radius:12px;line-height:1.6;font-size:.9rem}
+footer{margin-top:30px;border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:.85rem}
+dialog{width:min(620px,92vw);max-height:88vh;overflow:auto;border:1px solid #40516d;border-radius:17px;background:#0e1421;color:white;padding:0}
+dialog::backdrop{background:#02040bd9;backdrop-filter:blur(4px)}
+.close-row{display:flex;justify-content:flex-end;padding:12px}
+.modal-cover{height:210px;background:#15233b}.modal-cover img{width:100%;height:100%;object-fit:cover}
+.modal-content{padding:20px}.modal-content p{line-height:1.65;color:#c0cadc}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:15px 0}
+.spec{background:#151d2c;border:1px solid var(--line);border-radius:9px;padding:11px}
+.spec small{display:block;color:var(--muted);margin-bottom:5px}
+.modal-actions{display:flex;gap:9px;flex-wrap:wrap}
+.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:30;background:#17243a;border:1px solid #3e6b98;border-radius:10px;padding:12px 17px;max-width:90vw}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.controls{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.nav{padding:12px 0;align-items:flex-start}.nav nav{gap:9px;justify-content:flex-end}.nav nav a{font-size:.8rem}.hero{grid-template-columns:1fr;padding-top:40px}.hero-art{height:220px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:125px}.card-body{padding:10px}.card-actions{flex-direction:column}.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}.feature-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.stats{gap:8px}.stat{padding:11px}.stat b{font-size:1.15rem}.stat span{font-size:.75rem}}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.cover{height:180px}.controls{grid-template-columns:1fr}.controls input{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#top">GAMING <b>W</b><span>ORLD</span></a>
+<nav aria-label="Ana menü">
+<a href="#oyunlar">Oyunlar</a><a href="#ucretsiz">Ücretsiz</a><a href="#ozellikler">Özellikler</a>
+<button class="btn" id="favoritesNav">♥ Favoriler <span id="favCount">0</span></button>
+</nav></div></header>
+
+<main class="wrap" id="top">
+<div class="hero">
+<div><div class="eyebrow">Oyun evrenine giriş yap</div>
+<h1>OYUNUN<br><em>GÜCÜ</em> <span>SENDE.</span></h1>
+<p>Yeni oyunlar keşfet, favorilerini kaydet ve oyunların mağaza sayfalarına kolayca ulaş. GAMING WORLD her oyuncu için hazır.</p>
+<div class="hero-actions"><a class="btn primary" href="#oyunlar">Oyunları keşfet ↓</a><a class="btn blue" href="#ucretsiz">Ücretsiz oyunlar</a></div>
+</div>
+<div class="hero-art" role="img" aria-label="Neon oyun atmosferi"><div class="art-label">YOUR NEXT GAME</div></div>
+</div>
+
+<div class="stats">
+<div class="stat"><b id="totalCount">0</b><span>Oyun kataloğu</span></div>
+<div class="stat"><b id="freeCount">0</b><span>Ücretsiz erişim seçeneği</span></div>
+<div class="stat"><b id="savedStat">0</b><span>Favorilerin</span></div>
+</div>
+
+<section id="oyunlar">
+<div class="section-head"><div><h2>Oyun kütüphanesi</h2><p>Aradığın oyunu bul, detaylarını incele.</p></div><button class="btn" id="resetFilters">Filtreleri sıfırla</button></div>
+<div class="controls">
+<input class="control" id="search" type="search" placeholder="Oyun adı ara..." aria-label="Oyun ara">
+<select class="control" id="genre" aria-label="Tür seç"><option value="all">Tüm türler</option></select>
+<select class="control" id="priceFilter" aria-label="Fiyat türü"><option value="all">Tüm oyunlar</option><option value="free">Ücretsiz</option><option value="paid">Ücretli</option></select>
+<select class="control" id="sort" aria-label="Sıralama"><option value="popular">Önerilen sıralama</option><option value="az">İsim A-Z</option><option value="za">İsim Z-A</option><option value="free">Önce ücretsiz</option></select>
+</div>
+<div class="pills">
+<button class="pill active" data-quick="all">Tümü</button>
+<button class="pill" data-quick="free">Ücretsiz</button>
+<button class="pill" data-quick="fav">♥ Favorilerim</button>
+</div>
+<div class="grid" id="gameGrid" aria-live="polite"></div>
+</section>
+
+<section id="ucretsiz">
+<div class="section-head"><div><h2>Ücretsiz oynanabilenler</h2><p>Ücretsiz erişim ve içerikler değişebilir; mağazadan kontrol et.</p></div><button class="btn" id="showFree">Ücretsizleri filtrele</button></div>
+<div class="grid" id="freeGrid"></div>
+</section>
+
+<section id="ozellikler">
+<div class="section-head"><div><h2>GAMING WORLD özellikleri</h2><p>Bu sürümdeki araçlar.</p></div></div>
+<div class="feature-grid">
+<div class="feature"><div>🖼️</div><h3>Oyun kapakları</h3><p>Steam'deki oyun kapakları internetten yüklenir. Görsel yüklenmezse kartta oyun adı gösterilir.</p></div>
+<div class="feature"><div>♥</div><h3>Favori listesi</h3><p>Favoriler bu tarayıcıda saklanır. Başka cihazlarla otomatik senkronize olmaz.</p></div>
+<div class="feature"><div>🔎</div><h3>Arama ve filtreler</h3><p>Oyun adı, tür, ücretsiz/ücretli filtreleri ve alfabetik sıralama.</p></div>
+<div class="feature"><div>📋</div><h3>Oyun detayları</h3><p>Açıklama, tür, fiyat durumu ve mağaza bağlantısı.</p></div>
+<div class="feature"><div>📱</div><h3>Mobil uyum</h3><p>Telefon, tablet ve bilgisayar ekranlarına uyum sağlar.</p></div>
+<div class="feature"><div>🛒</div><h3>Satışa hazırlık</h3><p>Bu sürümde gerçek ödeme veya oyun anahtarı satışı yoktur. Satış için yetkili tedarikçi, güvenli ödeme altyapısı ve yasal koşullar gerekir.</p></div>
+</div>
+<div class="notice"><b>Bilgi:</b> Buradaki fiyat durumları canlı fiyat değildir. Satın almadan önce mağazadaki fiyatı, sistem gereksinimlerini, dil ve bölge şartlarını kontrol et. Bağlantılar ilgili mağazaya gider; GAMING WORLD içinde ödeme alınmaz. Bu site Steam/Valve tarafından işletilmez.</div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> GAMING WORLD · Bağımsız oyun keşif projesi.</div></footer>
+<dialog id="gameDialog"><div class="close-row"><button class="btn" id="closeDialog">✕ Kapat</button></div><div id="dialogContent"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+const games = [
+{id:730,n:"Counter-Strike 2",g:"FPS",free:true,price:"Ücretsiz",desc:"Takım tabanlı rekabetçi taktik nişancı oyunu."},
+{id:570,n:"Dota 2",g:"MOBA",free:true,price:"Ücretsiz",desc:"Derin strateji ve takım oyunu üzerine kurulu MOBA."},
+{id:1172470,n:"Apex Legends",g:"FPS",free:true,price:"Ücretsiz",desc:"Karakter yetenekleriyle battle royale deneyimi."},
+{id:578080,n:"PUBG: BATTLEGROUNDS",g:"Battle Royale",free:true,price:"Ücretsiz",desc:"Geniş haritalarda hayatta kalma mücadelesi."},
+{id:1091500,n:"Cyberpunk 2077",g:"RPG",free:false,price:"Ücretli",desc:"Geleceğin Night City şehrinde geçen açık dünya RPG."},
+{id:1174180,n:"Red Dead Redemption 2",g:"Açık Dünya",free:false,price:"Ücretli",desc:"Vahşi Batı'da geçen hikâye odaklı açık dünya macerası."},
+{id:271590,n:"Grand Theft Auto V",g:"Açık Dünya",free:false,price:"Ücretli",desc:"Los Santos'ta geçen açık dünya aksiyon oyunu."},
+{id:292030,n:"The Witcher 3: Wild Hunt",g:"RPG",free:false,price:"Ücretli",desc:"Canavar avcısı Geralt ile fantastik bir macera."},
+{id:1086940,n:"Baldur's Gate 3",g:"RPG",free:false,price:"Ücretli",desc:"Seçimlere dayalı fantastik rol yapma oyunu."},
+{id:1172620,n:"Sea of Thieves",g:"Macera",free:false,price:"Ücretli",desc:"Arkadaşlarınla korsan gemileri ve açık deniz maceraları."},
+{id:413150,n:"Stardew Valley",g:"Simülasyon",free:false,price:"Ücretli",desc:"Çiftliğini kur, kasabayı keşfet ve kendi temponda oyna."},
+{id:105600,n:"Terraria",g:"Sandbox",free:false,price:"Ücretli",desc:"Keşif, inşa ve savaşla dolu 2D sandbox."},
+{id:252490,n:"Rust",g:"Hayatta Kalma",free:false,price:"Ücretli",desc:"Kaynak topla, inşa et ve tehlikeli dünyada hayatta kal."},
+{id:346110,n:"ARK: Survival Evolved",g:"Hayatta Kalma",free:false,price:"Ücretli",desc:"Dinozorlarla dolu bir dünyada hayatta kalma."},
+{id:440,n:"Team Fortress 2",g:"FPS",free:true,price:"Ücretsiz",desc:"Sınıf tabanlı, takım odaklı çok oyunculu nişancı."},
+{id:230410,n:"Warframe",g:"Aksiyon",free:true,price:"Ücretsiz",desc:"Hızlı hareket ve görev odaklı bilim kurgu aksiyonu."},
+{id:236390,n:"War Thunder",g:"Simülasyon",free:true,price:"Ücretsiz",desc:"Hava, kara ve deniz araçlarıyla savaş."},
+{id:359550,n:"Rainbow Six Siege",g:"FPS",free:false,price:"Mağazadan kontrol et",desc:"Operatör yetenekleriyle taktiksel FPS."},
+{id:252950,n:"Rocket League",g:"Spor",free:true,price:"Ücretsiz",desc:"Arabalarla futbol oynadığın rekabetçi spor oyunu."},
+{id:1966720,n:"Lethal Company",g:"Korku",free:false,price:"Ücretli",desc:"Ekipçe tehlikeli tesislerden hurda topladığın co-op korku."},
+{id:1085660,n:"Destiny 2",g:"FPS",free:true,price:"Ücretsiz başlangıç",desc:"Bilim kurgu evreninde çevrim içi aksiyon; bazı içerikler ücretli."},
+{id:359320,n:"Elite Dangerous",g:"Simülasyon",free:false,price:"Ücretli",desc:"Galakside uzay uçuşu, ticaret ve keşif."},
+{id:1938090,n:"Call of Duty: Warzone",g:"Battle Royale",free:true,price:"Ücretsiz",desc:"Call of Duty evreninde battle royale modu."},
+{id:990080,n:"Hogwarts Legacy",g:"Macera",free:false,price:"Ücretli",desc:"Büyücülük dünyasında geçen açık dünya aksiyon RPG."},
+{id:1145360,n:"Hades",g:"Roguelike",free:false,price:"Ücretli",desc:"Mitolojiden esinlenen hızlı tempolu roguelike aksiyon."},
+{id:1794680,n:"Vampire Survivors",g:"Roguelike",free:false,price:"Ücretli",desc:"Düşman dalgalarına karşı güçlenerek hayatta kal."},
+{id:440900,n:"Conan Exiles",g:"Hayatta Kalma",free:false,price:"Ücretli",desc:"Açık dünyada üs kurma ve hayatta kalma."},
+{id:218620,n:"PAYDAY 2",g:"Aksiyon",free:false,price:"Ücretli",desc:"Ekipçe soygunlar planladığın kooperatif aksiyon."},
+{id:4000,n:"Garry's Mod",g:"Sandbox",free:false,price:"Ücretli",desc:"Fizik tabanlı sandbox ve topluluk modları."},
+{id:289070,n:"Sid Meier's Civilization VI",g:"Strateji",free:false,price:"Ücretli",desc:"Bir medeniyeti çağlar boyunca yönet."},
+{id:394360,n:"Hearts of Iron IV",g:"Strateji",free:false,price:"Ücretli",desc:"II. Dünya Savaşı döneminde büyük strateji."},
+{id:255710,n:"Cities: Skylines",g:"Simülasyon",free:false,price:"Ücretli",desc:"Kendi şehrini tasarla ve yönet."},
+{id:489830,n:"The Elder Scrolls V: Skyrim Special Edition",g:"RPG",free:false,price:"Ücretli",desc:"Ejderhalar ve keşifle dolu açık dünya RPG."},
+{id:304930,n:"Unturned",g:"Hayatta Kalma",free:true,price:"Ücretsiz",desc:"Blok tarzı dünyada zombi hayatta kalma oyunu."},
+{id:444090,n:"Paladins",g:"FPS",free:true,price:"Mağazadan kontrol et",desc:"Karakter yetenekleriyle takım tabanlı kahraman nişancı."},
+{id:386360,n:"SMITE",g:"MOBA",free:true,price:"Ücretsiz",desc:"Mitolojik karakterlerle üçüncü şahıs MOBA."},
+{id:304050,n:"Trove",g:"MMORPG",free:true,price:"Ücretsiz",desc:"Küp tarzı dünyalarda keşif ve macera."},
+{id:238960,n:"Path of Exile",g:"RPG",free:true,price:"Ücretsiz",desc:"Derin karakter geliştirme sistemine sahip aksiyon RPG."},
+{id:2139460,n:"Once Human",g:"Hayatta Kalma",free:true,price:"Ücretsiz",desc:"Tuhaf bir açık dünyada hayatta kalma ve keşif."},
+{id:739630,n:"Phasmophobia",g:"Korku",free:false,price:"Ücretli",desc:"Arkadaşlarınla paranormal olayları araştır."},
+{id:1245620,n:"ELDEN RING",g:"RPG",free:false,price:"Ücretli",desc:"Zorlu savaşlar ve keşifle dolu fantastik dünya."},
+{id:108600,n:"Project Zomboid",g:"Hayatta Kalma",free:false,price:"Ücretli",desc:"Zombi salgınında zorlu hayatta kalma."},
+{id:227300,n:"Euro Truck Simulator 2",g:"Simülasyon",free:false,price:"Ücretli",desc:"Avrupa yollarında tır sür, şirketini büyüt."},
+{id:240,n:"Counter-Strike: Source",g:"FPS",free:false,price:"Ücretli",desc:"Klasik takım tabanlı Counter-Strike deneyimi."},
+{id:550,n:"Left 4 Dead 2",g:"Korku",free:false,price:"Ücretli",desc:"Zombi sürülerine karşı kooperatif aksiyon."},
+{id:377160,n:"Fallout 4",g:"RPG",free:false,price:"Ücretli",desc:"Kıyamet sonrası dünyada keşif ve rol yapma."},
+{id:275850,n:"No Man's Sky",g:"Keşif",free:false,price:"Ücretli",desc:"Prosedürel evrende uzay keşfi, inşa ve hayatta kalma."},
+{id:526870,n:"Satisfactory",g:"Simülasyon",free:false,price:"Ücretli",desc:"Gezegende fabrikalar kur ve üretim hatlarını geliştir."},
+{id:814380,n:"Sekiro: Shadows Die Twice",g:"Aksiyon",free:false,price:"Ücretli",desc:"Zamanlamaya dayalı zorlu samuray aksiyonu."},
+{id:255710,n:"Cities: Skylines",g:"Simülasyon",free:false,price:"Ücretli",desc:"Şehir kurma ve yönetme simülasyonu."},
+{id:892970,n:"Valheim",g:"Hayatta Kalma",free:false,price:"Ücretli",desc:"Viking temalı keşif, inşa ve hayatta kalma."}
+];
+// Aynı ada sahip kartları tekrarlama.
+const catalog=[...new Map(games.map(g=>[g.n,g])).values()];
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCxx1vVOoR42K_uVbRgetbQeYyvOSRASek",
+  authDomain: "gaming-world-84c2c.firebaseapp.com",
+  projectId: "gaming-world-84c2c",
+  storageBucket: "gaming-world-84c2c.firebasestorage.app",
+  messagingSenderId: "639449813419",
+  appId: "1:639449813419:web:c0fe8eca0c5f7d52b302ee",
+  measurementId: "G-8SXM6C47JN"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let currentUser = null;
+let favoriteUnsubscribe = null;
+
+const $=s=>document.querySelector(s);
+const favoriteKey="gaming-world-favorites-v1";
+let favorites=new Set();
+try{favorites=new Set(JSON.parse(localStorage.getItem(favoriteKey)||"[]"))}catch(e){}
+let quickMode="all";
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function imageUrl(g){return `https://cdn.akamai.steamstatic.com/steam/apps/${g.id}/header.jpg`}
+function card(g){
+const saved=favorites.has(g.n);
+return `<article class="game-card"><div class="cover"><div class="cover-fallback">${esc(g.n)}</div><img loading="lazy" src="${imageUrl(g)}" alt="${esc(g.n)} kapak görseli" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"><span class="tag">${g.free?"ÜCRETSİZ":"OYUN"}</span><button class="heart ${saved?"saved":""}" data-fav="${esc(g.n)}" aria-label="Favorilere ekle">${saved?"♥":"♡"}</button></div><div class="card-body"><h3 title="${esc(g.n)}">${esc(g.n)}</h3><div class="meta"><span>${esc(g.g)}</span><span>Steam</span></div><div class="price-row"><span class="price ${g.free?"free":""}">${esc(g.price)}</span></div><div class="card-actions"><button class="btn" data-detail="${esc(g.n)}">Detaylar</button><a class="btn blue" href="https://store.steampowered.com/app/${g.id}/" target="_blank" rel="noopener noreferrer">Mağaza ↗</a></div></div></article>`;
+}
+function render(){
+let list=[...catalog],q=$("#search").value.trim().toLocaleLowerCase("tr"),genre=$("#genre").value,pf=$("#priceFilter").value,sort=$("#sort").value;
+if(q)list=list.filter(g=>(g.n+" "+g.g+" "+g.desc).toLocaleLowerCase("tr").includes(q));
+if(genre!=="all")list=list.filter(g=>g.g===genre);
+if(pf==="free"||quickMode==="free")list=list.filter(g=>g.free);
+if(pf==="paid")list=list.filter(g=>!g.free);
+if(quickMode==="fav")list=list.filter(g=>favorites.has(g.n));
+if(sort==="az")list.sort((a,b)=>a.n.localeCompare(b.n,"tr"));
+if(sort==="za")list.sort((a,b)=>b.n.localeCompare(a.n,"tr"));
+if(sort==="free")list.sort((a,b)=>Number(b.free)-Number(a.free)||a.n.localeCompare(b.n,"tr"));
+$("#gameGrid").innerHTML=list.length?list.map(card).join(""):`<div class="empty">Oyun bulunamadı. Aramayı veya filtreleri değiştir.</div>`;
+$("#freeGrid").innerHTML=catalog.filter(g=>g.free).slice(0,4).map(card).join("");
+$("#totalCount").textContent=catalog.length;
+$("#freeCount").textContent=catalog.filter(g=>g.free).length;
+$("#favCount").textContent=favorites.size;
+$("#savedStat").textContent=favorites.size;
+document.querySelectorAll("[data-quick]").forEach(b=>b.classList.toggle("active",b.dataset.quick===quickMode));
+}
+let toastTimer;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.style.display="block";clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display="none",2200)}
+
+async function toggleFavorite(name) {
+  const wasFavorite = favorites.has(name);
+
+  if (!currentUser) {
+    toast("Favorileri hesabına kaydetmek için giriş yap.");
+    return;
+  }
+
+  const saved = await saveFavoriteToAccount(name, !wasFavorite);
+  if (!saved) return;
+
+  if (wasFavorite) {
+    favorites.delete(name);
+    toast("Favorilerden çıkarıldı");
+  } else {
+    favorites.add(name);
+    toast("Favorilere eklendi ♥");
+  }
+
+  render();
+}
+async function saveFavoriteToAccount(gameId, isFavorite) {
+  if (!currentUser) {
+    toast("Önce giriş yap!");
+    return false;
+  }
+
+  try {
+    const ref = db.collection("users")
+      .doc(currentUser.uid)
+      .collection("favorites")
+      .doc(String(gameId));
+
+    if (isFavorite) {
+      await ref.set({ gameId: String(gameId) });
+    } else {
+      await ref.delete();
+    }
+    return true;
+  } catch (error) {
+    toast("Favoriler kaydedilemedi");
+    return false;
+  }
+}
+function showDetail(name){
+const g=catalog.find(x=>x.n===name);if(!g)return;
+$("#dialogContent").innerHTML=`<div class="modal-cover"><img src="${imageUrl(g)}" alt="${esc(g.n)}" onerror="this.style.display='none'"></div><div class="modal-content"><div class="eyebrow">${esc(g.g)}</div><h2>${esc(g.n)}</h2><p>${esc(g.desc)}</p><div class="specs"><div class="spec"><small>Tür</small><strong>${esc(g.g)}</strong></div><div class="spec"><small>Fiyat durumu</small><strong>${esc(g.price)}</strong></div><div class="spec"><small>Mağaza</small><strong>Steam</strong></div><div class="spec"><small>Fiyat bilgisi</small><strong>Canlı değil</strong></div></div><p>Fiyatı, sistem gereksinimlerini ve bölge erişimini mağazanın güncel sayfasından kontrol et.</p><div class="modal-actions"><a class="btn blue" href="https://store.steampowered.com/app/${g.id}/" target="_blank" rel="noopener noreferrer">Steam sayfasını aç ↗</a><button class="btn" data-fav="${esc(g.n)}">${favorites.has(g.n)?"♥ Favoriden çıkar":"♡ Favorilere ekle"}</button></div></div>`;
+$("#gameDialog").showModal();
+}
+[...new Set(catalog.map(g=>g.g))].sort((a,b)=>a.localeCompare(b,"tr")).forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;$("#genre").appendChild(o)});
+["search","genre","priceFilter","sort"].forEach(id=>$("#"+id).addEventListener(id==="search"?"input":"change",()=>{quickMode="all";render()}));
+document.addEventListener("click",e=>{
+const f=e.target.closest("[data-fav]");if(f){const name=f.dataset.fav;toggleFavorite(name);if($("#gameDialog").open)showDetail(name);return}
+const d=e.target.closest("[data-detail]");if(d){showDetail(d.dataset.detail);return}
+const p=e.target.closest("[data-quick]");if(p){quickMode=p.dataset.quick;$("#priceFilter").value=quickMode==="free"?"free":"all";render()}
+});
+$("#favoritesNav").addEventListener("click",()=>{quickMode="fav";$("#priceFilter").value="all";render();$("#oyunlar").scrollIntoView({behavior:"smooth"})});
+$("#showFree").addEventListener("click",()=>{quickMode="free";$("#priceFilter").value="free";render();$("#oyunlar").scrollIntoView({behavior:"smooth"})});
+$("#resetFilters").addEventListener("click",()=>{$("#search").value="";$("#genre").value="all";$("#priceFilter").value="all";$("#sort").value="popular";quickMode="all";render()});
+$("#closeDialog").addEventListener("click",()=>$("#gameDialog").close());
+$("#gameDialog").addEventListener("click",e=>{if(e.target===$("#gameDialog"))$("#gameDialog").close()});
+$("#year").textContent=new Date().getFullYear();
+render();
+</script>
+
+<div id="accountBox" style="
+  max-width:420px;margin:25px auto;padding:22px;
+  background:#101522;border:1px solid #168cff;
+  border-radius:16px;color:white;font-family:Arial;
+  box-shadow:0 0 18px #087cff44">
+  <h2 style="color:#39a9ff;text-align:center">🎮 GAMING WORLD</h2>
+  <p id="accountStatus" style="text-align:center">Hesabına giriş yap</p>
+
+  <input id="accountEmail" type="email" placeholder="E-posta adresin"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:7px 0">
+  <input id="accountPassword" type="password" placeholder="Şifren (en az 6 karakter)"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:7px 0">
+
+  <button onclick="registerAccount()" style="width:100%;padding:12px;margin-top:8px;background:#087cff;color:white;border:0;border-radius:8px;cursor:pointer">
+    Hesap Oluştur
+  </button>
+  <button onclick="loginAccount()" style="width:100%;padding:12px;margin-top:8px;background:#202c42;color:white;border:1px solid #168cff;border-radius:8px;cursor:pointer">
+    Giriş Yap
+  </button>
+  <button id="logoutButton" onclick="logoutAccount()" style="display:none;width:100%;padding:12px;margin-top:8px;background:#b91c1c;color:white;border:0;border-radius:8px;cursor:pointer">
+    Çıkış Yap
+  </button>
+  <p id="accountMessage" role="status" style="overflow-wrap:anywhere"></p>
+</div>
+
+<script>
+window.registerAccount = async function () {
+  const email = document.getElementById("accountEmail").value.trim();
+  const password = document.getElementById("accountPassword").value;
+  const message = document.getElementById("accountMessage");
+
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password);
+    message.textContent = "Hesabın oluşturuldu!";
+  } catch (error) {
+    message.textContent = error.message;
+  }
+};
+
+window.loginAccount = async function () {
+  const email = document.getElementById("accountEmail").value.trim();
+  const password = document.getElementById("accountPassword").value;
+  const message = document.getElementById("accountMessage");
+
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password);
+    message.textContent = "Giriş başarılı!";
+  } catch (error) {
+    message.textContent = error.message;
+  }
+};
+
+window.logoutAccount = async function () {
+  try {
+    await firebase.auth().signOut();
+    document.getElementById("accountMessage").textContent = "Çıkış yapıldı.";
+  } catch (error) {
+    document.getElementById("accountMessage").textContent = error.message;
+  }
+};
+</script>
+</body>
+</html>
