@@ -370,8 +370,15 @@ function imageUrl(g){
   const name = g.n.toLocaleLowerCase("tr");
 
   if(name.includes("mobile legends")){
-    return "https://play-lh.googleusercontent.com/7G8Vx0kqJx0w7kqYx5qZJxQ";
+    return "https://upload.wikimedia.org/wikipedia/en/7/7a/Mobile_Legends_Bang_Bang_logo.png";
   }
+
+  if(name.includes("fc 26") || name.includes("ea sports fc 26")){
+    return "https://cdn.akamai.steamstatic.com/steam/apps/3405690/header.jpg";
+  }
+
+  return `https://cdn.akamai.steamstatic.com/steam/apps/${g.id}/header.jpg`;
+}
 
   if(name.includes("fc 26") || name.includes("ea sports fc 26")){
     return "https://cdn.akamai.steamstatic.com/steam/apps/3405690/header.jpg";
