@@ -366,7 +366,19 @@ let favorites=new Set();
 try{favorites=new Set(JSON.parse(localStorage.getItem(favoriteKey)||"[]"))}catch(e){}
 let quickMode="all";
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function imageUrl(g){return `https://cdn.akamai.steamstatic.com/steam/apps/${g.id}/header.jpg`}
+function imageUrl(g){
+  const name = g.n.toLocaleLowerCase("tr");
+
+  if(name.includes("mobile legends")){
+    return "https://play-lh.googleusercontent.com/7G8Vx0kqJx0w7kqYx5qZJxQ";
+  }
+
+  if(name.includes("fc 26") || name.includes("ea sports fc 26")){
+    return "https://cdn.akamai.steamstatic.com/steam/apps/3405690/header.jpg";
+  }
+
+  return `https://cdn.akamai.steamstatic.com/steam/apps/${g.id}/header.jpg`;
+}
 function card(g){
 const saved=favorites.has(g.n);
 return `<article class="game-card"><div class="cover"><div class="cover-fallback">${esc(g.n)}</div><img loading="lazy" src="${imageUrl(g)}" alt="${esc(g.n)} kapak görseli" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"><span class="tag">${g.free?"ÜCRETSİZ":"OYUN"}</span><button class="heart ${saved?"saved":""}" data-fav="${esc(g.n)}" aria-label="Favorilere ekle">${saved?"♥":"♡"}</button></div><div class="card-body"><h3 title="${esc(g.n)}">${esc(g.n)}</h3><div class="meta"><span>${esc(g.g)}</span><span>Steam</span></div><div class="price-row"><span class="price ${g.free?"free":""}">${esc(g.price)}</span></div><div class="card-actions"><button class="btn" data-detail="${esc(g.n)}">Detaylar</button><a class="btn blue" href="https://store.steampowered.com/app/${g.id}/" target="_blank" rel="noopener noreferrer">Mağaza ↗</a></div></div></article>`;
