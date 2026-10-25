@@ -213,6 +213,39 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
+  let currentUser = null;
+
+auth.onAuthStateChanged(async (user) => {
+  currentUser = user;
+
+  const status = document.getElementById("accountStatus");
+  const logoutButton = document.getElementById("logoutButton");
+
+  if (user) {
+    if (status) status.textContent = "Giriş yapıldı: " + user.email;
+    if (logoutButton) logoutButton.style.display = "block";
+
+    try {
+      const snapshot = await db.collection("users")
+        .doc(user.uid)
+        .collection("favorites")
+        .get();
+
+      favorites = new Set(
+        snapshot.docs.map(doc => doc.data().gameId)
+      );
+
+      render();
+    } catch (error) {
+      console.error("Favoriler yüklenemedi:", error);
+    }
+  } else {
+    if (status) status.textContent = "Hesabına giriş yap";
+    if (logoutButton) logoutButton.style.display = "none";
+    favorites = new Set();
+    render();
+  }
+});
 
 let currentUser = null;
 let favoriteUnsubscribe = null;
